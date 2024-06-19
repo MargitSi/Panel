@@ -2,10 +2,8 @@ Description and answers:
 
 Pipeline:
 
--Snakemake pipeline with Snakefile was used by command snakemake --cores 1
-
-Main bash tools in Snakefile are bedtools intersect, bedtools getfasta, blastn
-
+-Snakemake pipeline with Snakefile was used by command snakemake --cores 1.
+Main bash tools in Snakefile are bedtools intersect, bedtools getfasta, blastn.
 Snakefile also uses process_annotate.py script for subsequent data processing
 
 -environment.yml provides description of environment

@@ -1,0 +1,69 @@
+Building DAG of jobs...
+Using shell: /bin/bash
+Provided cores: 1 (use --cores to define parallelism)
+Rules claiming more threads will be scaled down.
+Job stats:
+job                 count
+----------------  -------
+all                     1
+intersect               1
+nontarget               1
+process_annotate        1
+total                   4
+
+Select jobs to execute...
+Execute 1 jobs...
+
+[Tue Jun 18 22:28:06 2024]
+localrule nontarget:
+    input: initial_files/IAD143293_241_Designed.bed, initial_files/hg19.fa
+    output: intermediate_files/panel_IAD143293_241_Designed.fa, intermediate_files/blast_results_IAD143293_241_Designed.txt
+    jobid: 3
+    reason: Missing output files: intermediate_files/blast_results_IAD143293_241_Designed.txt
+    resources: tmpdir=/tmp
+
+[Tue Jun 18 22:30:29 2024]
+Finished job 3.
+1 of 4 steps (25%) done
+Select jobs to execute...
+Execute 1 jobs...
+
+[Tue Jun 18 22:30:29 2024]
+localrule intersect:
+    input: initial_files/IAD143293_241_Designed.bed, initial_files/ensembl_genes.gz, initial_files/ensembl_exons.gz
+    output: intermediate_files/indexed_IAD143293_241_Designed.bed, intermediate_files/intersect_genes_IAD143293_241_Designed.bed, intermediate_files/intersect_exons_IAD143293_241_Designed.bed
+    jobid: 2
+    reason: Missing output files: intermediate_files/indexed_IAD143293_241_Designed.bed, intermediate_files/intersect_exons_IAD143293_241_Designed.bed, intermediate_files/intersect_genes_IAD143293_241_Designed.bed
+    resources: tmpdir=/tmp
+
+[Tue Jun 18 22:30:32 2024]
+Finished job 2.
+2 of 4 steps (50%) done
+Select jobs to execute...
+Execute 1 jobs...
+
+[Tue Jun 18 22:30:32 2024]
+localrule process_annotate:
+    input: intermediate_files/intersect_genes_IAD143293_241_Designed.bed, intermediate_files/intersect_exons_IAD143293_241_Designed.bed, intermediate_files/indexed_IAD143293_241_Designed.bed, initial_files/Clingen-Gene-Disease-Summary-2024-06-16.csv, intermediate_files/blast_results_IAD143293_241_Designed.txt
+    output: final_files/annotated_panel_IAD143293_241_Designed.bed, final_files/panel_disease_IAD143293_241_Designed.bed, final_files/non_target_IAD143293_241_Designed.bed
+    jobid: 1
+    reason: Missing output files: final_files/panel_disease_IAD143293_241_Designed.bed, final_files/annotated_panel_IAD143293_241_Designed.bed, final_files/non_target_IAD143293_241_Designed.bed; Input files updated by another job: intermediate_files/indexed_IAD143293_241_Designed.bed, intermediate_files/blast_results_IAD143293_241_Designed.txt, intermediate_files/intersect_exons_IAD143293_241_Designed.bed, intermediate_files/intersect_genes_IAD143293_241_Designed.bed
+    resources: tmpdir=/tmp
+
+[Tue Jun 18 22:34:30 2024]
+Finished job 1.
+3 of 4 steps (75%) done
+Select jobs to execute...
+Execute 1 jobs...
+
+[Tue Jun 18 22:34:30 2024]
+localrule all:
+    input: final_files/annotated_panel_IAD143293_241_Designed.bed, final_files/panel_disease_IAD143293_241_Designed.bed, final_files/non_target_IAD143293_241_Designed.bed
+    jobid: 0
+    reason: Input files updated by another job: final_files/non_target_IAD143293_241_Designed.bed, final_files/panel_disease_IAD143293_241_Designed.bed, final_files/annotated_panel_IAD143293_241_Designed.bed
+    resources: tmpdir=/tmp
+
+[Tue Jun 18 22:34:30 2024]
+Finished job 0.
+4 of 4 steps (100%) done
+Complete log: .snakemake/log/2024-06-18T222806.372561.snakemake.log

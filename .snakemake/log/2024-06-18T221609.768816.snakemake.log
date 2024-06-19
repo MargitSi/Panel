@@ -1,0 +1,35 @@
+Building DAG of jobs...
+Using shell: /bin/bash
+Provided cores: 1 (use --cores to define parallelism)
+Rules claiming more threads will be scaled down.
+Job stats:
+job                 count
+----------------  -------
+all                     1
+intersect               1
+nontarget               1
+process_annotate        1
+total                   4
+
+Select jobs to execute...
+Execute 1 jobs...
+
+[Tue Jun 18 22:16:09 2024]
+localrule nontarget:
+    input: initial_files/IAD143293_241_Designed.bed, initial_files/hg19.fa
+    output: intermediate_files/panel_IAD143293_241_Designed.fa, intermediate_files/DB, intermediate_files/blast_results_IAD143293_241_Designed.txt
+    jobid: 3
+    reason: Missing output files: intermediate_files/blast_results_IAD143293_241_Designed.txt; Code has changed since last execution
+    resources: tmpdir=/tmp
+
+Waiting at most 5 seconds for missing files.
+MissingOutputException in rule nontarget in file /tank/projects/margarita/Panel/Final/Snakefile, line 24:
+Job 3  completed successfully, but some output files are missing. Missing files after 5 seconds. This might be due to filesystem latency. If that is the case, consider to increase the wait time with --latency-wait:
+intermediate_files/DB (missing locally, parent dir contents: DB.nhr, panel_IAD143293_241_Designed.fa, DB.nin, blast_results_IAD143293_241_Designed.txt, DB.nsq)
+Removing output files of failed job nontarget since they might be corrupted:
+intermediate_files/panel_IAD143293_241_Designed.fa, intermediate_files/blast_results_IAD143293_241_Designed.txt
+Shutting down, this might take some time.
+Exiting because a job execution failed. Look above for error message
+Complete log: .snakemake/log/2024-06-18T221609.768816.snakemake.log
+WorkflowError:
+At least one job did not complete successfully.
